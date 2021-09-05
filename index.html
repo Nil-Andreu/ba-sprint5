@@ -10,20 +10,23 @@
 </head>
 
 <body>
-    <div class="container image_background-1">
+    <div class="container" id="container">
         <div class="weather">
             Hello
         </div>
 
         <div class="jokes">
-            <h3 class="jokes_paragraph">Preparat per riure?</h3>
-            <p></p>
-            <div class="jokes_score">
-                <button class="jokes_score">Bad</button>
-                <button class="jokes_score">Bad</button>
-                <button class="jokes_score">Extraordinary</button>
+            <h3 class="jokes_title">Preparat per riure?</h3>
+            <div class="jokes_paragraph"></div>
+            <div class="buttons">
+                <div class="jokes_score">
+                    <button class="jokes_button" onclick="submission(1)">Bad</button>
+                    <button class="jokes_button" onclick="submission(2)">Good</button>
+                    <button class="jokes_button" onclick="submission(3)">Extraordinary</button>
+                </div>
+                <button class="jokes_change" id="change">Change it!</button>
             </div>
-            <button class="jokes_change" onclick=change>Change it!</button>
+            
         </div>
 
     </div>
