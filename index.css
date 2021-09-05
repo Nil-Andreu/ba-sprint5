@@ -8,10 +8,20 @@ body {
 .container {
     width: 100vw;
     height: 100vh;
+
+    /* For cleaning the viewport to do not appear scroll bars neither horizontally or vertically*/
+    display: flex;
+    clear: both;
+
+    /*For positioning the form*/
+
+    /*For the image in the background*/
+    margin: 0;
+    padding: 0;
     background-image: url("index.svg");
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
-    
 }
 
 
