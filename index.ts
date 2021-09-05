@@ -70,6 +70,7 @@ async function fetchJokes() {
     });
     const data = await response.json();
 
+    // we return the joke that we want
     return data.value;
   }
 }

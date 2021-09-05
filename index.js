@@ -126,6 +126,7 @@ function fetchJokes() {
                     return [4 /*yield*/, response.json()];
                 case 5:
                     data = _a.sent();
+                    // we return the joke that we want
                     return [2 /*return*/, data.value];
             }
         });
