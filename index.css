@@ -49,12 +49,19 @@ body {
     justify-content: space-between;  
 }
 
-.jokes_paragraph {
+.jokes .jokes_title {
     color: white;
+    text-align: center;
+}
+
+.jokes .jokes_paragraph {
+    color: white;
+    width: 50%;
+    text-align: center;
 }
 
 
-.jokes_change {
+.buttons .jokes_change {
     width: 100%;
     vertical-align: middle;
     background-color: yellow;

@@ -13,7 +13,10 @@ async function fetchURL()  {
             Accept: "application/json"
         }
     });
-    const data = await response.json();
+    // The data will be response in json, but we will have to await as the reponse is not immediately
+    const data = await response.json(); 
+
+    // Obtain the joke field
     let joke:string = data.joke
     console.log(joke)
     return joke
