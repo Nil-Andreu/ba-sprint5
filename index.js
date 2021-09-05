@@ -88,16 +88,18 @@ function weather() {
     });
 }
 // And when the window is loaded, is when we run the function
-window.addEventListener('load', weather);
+window.addEventListener("load", weather);
 // COLLECTING JOKES (NEED TO COLLECT MORE JOKES FROM OTHER APIS)
 // Create the async function to request to the url
 function fetchJokes() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, response, data, joke;
+        var random, url, response, data, joke, url, response, data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'https://icanhazdadjoke.com/';
+                    random = Math.floor(Math.random() * 2 + 1);
+                    if (!(random == 1)) return [3 /*break*/, 3];
+                    url = "https://icanhazdadjoke.com/";
                     return [4 /*yield*/, fetch(url, {
                             // We state which will be the header of the fetch, as the api require an accept header
                             headers: {
@@ -112,42 +114,36 @@ function fetchJokes() {
                     joke = data.joke;
                     console.log(joke);
                     return [2 /*return*/, joke];
+                case 3:
+                    url = "https://api.chucknorris.io/jokes/random";
+                    return [4 /*yield*/, fetch(url, {
+                            headers: {
+                                Accept: "application/json"
+                            }
+                        })];
+                case 4:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 5:
+                    data = _a.sent();
+                    return [2 /*return*/, data.value];
             }
         });
     });
 }
+// CHANGING JOKES
 // Here we create the paragraph
 var tag = document.createElement("p"); // Creating the tag element
 var text = document.createTextNode("Clica al butó per obtenir acudits!");
 tag.appendChild(text);
 paragraph.appendChild(tag);
-// HANDLING SCORES
-// Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
-var reportJokes = [];
-// Handling the score submissions
-function submission(score_num) {
-    // First we obtain the text content of our jokes paragraph
-    var text = document.querySelector(".jokes_paragraph").childNodes[0].textContent;
-    // Now we obtain the actual date and convert to ISO
-    var dateISO = new Date().toISOString();
-    // And now we push this as a paragraph
-    reportJokes.push({
-        joke: text,
-        score: score_num,
-        date: dateISO
-    });
-    console.log(reportJokes);
-}
-// CHANGING JOKES
 // To handle the onclick of the change button
 change.onclick = function changer(e) {
     return __awaiter(this, void 0, void 0, function () {
         var new_joke, item, new_tag, new_text, containerStyle, random, random_name, random_url;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetchJokes()
-                    // Change the text with the one requested
-                ];
+                case 0: return [4 /*yield*/, fetchJokes()];
                 case 1:
                     new_joke = _a.sent();
                     item = document.querySelector(".jokes_paragraph");
@@ -167,3 +163,20 @@ change.onclick = function changer(e) {
         });
     });
 };
+// HANDLING SCORES
+// Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
+var reportJokes = [];
+// Handling the score submissions
+function submission(score_num) {
+    // First we obtain the text content of our jokes paragraph
+    var text = document.querySelector(".jokes_paragraph").childNodes[0].textContent;
+    // Now we obtain the actual date and convert to ISO
+    var dateISO = new Date().toISOString();
+    // And now we push this as a paragraph
+    reportJokes.push({
+        joke: text,
+        score: score_num,
+        date: dateISO
+    });
+    console.log(reportJokes);
+}
