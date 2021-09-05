@@ -28,8 +28,11 @@ body {
 
 .weather {
     height: 80px;
+    width: 100px;
     width: 100%;
+    position: absolute;
     display: flex;
+    margin-left: 30px;
     flex-direction: row;
     justify-content: flex-start;
     font-size: 1.05rem;

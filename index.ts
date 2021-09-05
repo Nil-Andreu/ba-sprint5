@@ -1,9 +1,46 @@
 let container = document.getElementById("container");
 let change = document.getElementById("change");
 let paragraph = document.querySelector(".jokes_paragraph");
+let weather_container = document.querySelector(".weather");
 
+// OBTAINING THE WEATHER
+let apiKey:string = "d391122e8b964df10273ed7808eae839"
+let urlWeather:string = `https://api.openweathermap.org/data/2.5/weather?q=Spain&appid=${apiKey}`;
+async function fetchWeather() {
+    let response = await fetch(urlWeather, {
+        headers: {
+            Accept: "application/json"
+        }
+    })
+    let data = await response.json()
+    let temperatureF:number = data.main.temp
+    let temperatureC:number = (((temperatureF-32)*5)/9)
+    return Math.round(temperatureC)
+}
+
+let tagWeather = document.createElement("p"); // Creating the tag element
+let textWeather = document.createTextNode("La temperatura es...");
+tagWeather.appendChild(textWeather);
+weather_container.appendChild(tagWeather);
+
+async function weather() {
+    let temperature = await (await fetchWeather()).toString()
+
+    // And now we will replace the text with the actual temperature
+    let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
+    let new_text: Text = document.createTextNode(temperature);
+    new_tag.appendChild(new_text);
+
+    // We are replacing the object text
+    weather_container.replaceWith(new_tag);
+}
+
+// And when the window is loaded, is when we run the function
+window.addEventListener('load', weather)
+
+// COLLECTING JOKES (NEED TO COLLECT MORE JOKES FROM OTHER APIS)
 // Create the async function to request to the url
-async function fetchURL()  {
+async function fetchJokes()  {
     let url:string = 'https://icanhazdadjoke.com/'
 
     // We do asynchnoursly fetch for the data in the url
@@ -28,6 +65,7 @@ let text = document.createTextNode("Clica al butó per obtenir acudits!");
 tag.appendChild(text);
 paragraph.appendChild(tag);
 
+// HANDLING SCORES
 // Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
 let reportJokes = []
 
@@ -49,19 +87,18 @@ function submission(score_num:number){
     console.log(reportJokes)
 }
 
-
-
+// CHANGING JOKES
 // To handle the onclick of the change button
 change.onclick = async function changer(e) {
-    let new_joke = await fetchURL()
+    let new_joke = await fetchJokes()
   // Change the text with the one requested
   let item: ChildNode = document.querySelector(".jokes_paragraph")
   let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
   let new_text: Text = document.createTextNode(new_joke);
   new_tag.appendChild(new_text);
-  paragraph.replaceChild(new_tag, item.childNodes[0]);
 
-  fetchURL()
+  // And we replace the child
+  paragraph.replaceChild(new_tag, item.childNodes[0]);
 
   // Changing the background
   let containerStyle = container.style;

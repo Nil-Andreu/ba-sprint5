@@ -37,8 +37,62 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var container = document.getElementById("container");
 var change = document.getElementById("change");
 var paragraph = document.querySelector(".jokes_paragraph");
+var weather_container = document.querySelector(".weather");
+// OBTAINING THE WEATHER
+var apiKey = "d391122e8b964df10273ed7808eae839";
+var urlWeather = "https://api.openweathermap.org/data/2.5/weather?q=Spain&appid=" + apiKey;
+function fetchWeather() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, temperatureF, temperatureC;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch(urlWeather, {
+                        headers: {
+                            Accept: "application/json"
+                        }
+                    })];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _a.sent();
+                    temperatureF = data.main.temp;
+                    temperatureC = (((temperatureF - 32) * 5) / 9);
+                    return [2 /*return*/, Math.round(temperatureC)];
+            }
+        });
+    });
+}
+var tagWeather = document.createElement("p"); // Creating the tag element
+var textWeather = document.createTextNode("La temperatura es...");
+tagWeather.appendChild(textWeather);
+weather_container.appendChild(tagWeather);
+function weather() {
+    return __awaiter(this, void 0, void 0, function () {
+        var temperature, new_tag, new_text;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetchWeather()];
+                case 1: return [4 /*yield*/, (_a.sent()).toString()
+                    // And now we will replace the text with the actual temperature
+                ];
+                case 2:
+                    temperature = _a.sent();
+                    new_tag = document.createElement("p");
+                    new_text = document.createTextNode(temperature);
+                    new_tag.appendChild(new_text);
+                    // We are replacing the object text
+                    weather_container.replaceWith(new_tag);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+// And when the window is loaded, is when we run the function
+window.addEventListener('load', weather);
+// COLLECTING JOKES (NEED TO COLLECT MORE JOKES FROM OTHER APIS)
 // Create the async function to request to the url
-function fetchURL() {
+function fetchJokes() {
     return __awaiter(this, void 0, void 0, function () {
         var url, response, data, joke;
         return __generator(this, function (_a) {
@@ -68,6 +122,7 @@ var tag = document.createElement("p"); // Creating the tag element
 var text = document.createTextNode("Clica al butó per obtenir acudits!");
 tag.appendChild(text);
 paragraph.appendChild(tag);
+// HANDLING SCORES
 // Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
 var reportJokes = [];
 // Handling the score submissions
@@ -84,13 +139,14 @@ function submission(score_num) {
     });
     console.log(reportJokes);
 }
+// CHANGING JOKES
 // To handle the onclick of the change button
 change.onclick = function changer(e) {
     return __awaiter(this, void 0, void 0, function () {
         var new_joke, item, new_tag, new_text, containerStyle, random, random_name, random_url;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetchURL()
+                case 0: return [4 /*yield*/, fetchJokes()
                     // Change the text with the one requested
                 ];
                 case 1:
@@ -99,8 +155,8 @@ change.onclick = function changer(e) {
                     new_tag = document.createElement("p");
                     new_text = document.createTextNode(new_joke);
                     new_tag.appendChild(new_text);
+                    // And we replace the child
                     paragraph.replaceChild(new_tag, item.childNodes[0]);
-                    fetchURL();
                     containerStyle = container.style;
                     random = Math.floor(Math.random() * 3 + 1);
                     random_name = "index" + random + ".svg";
