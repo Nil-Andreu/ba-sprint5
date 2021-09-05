@@ -2,6 +2,21 @@ let container = document.getElementById("container");
 let change = document.getElementById("change");
 let paragraph = document.querySelector(".jokes_paragraph");
 
+// Create the async function to request to the url
+async function fetchURL()  {
+    let url:string = 'https://icanhazdadjoke.com/'
+
+    // We do asynchnoursly fetch for the data in the url
+    let response = await fetch(url, {
+        // We state which will be the header of the fetch, as the api require an accept header
+        headers: {
+            Accept: "application/json"
+        }
+    })
+    let joke = await response.json()
+    return joke
+}
+
 // Here we create the paragraph
 let tag = document.createElement("p"); // Creating the tag element
 let text = document.createTextNode("The text of the joke");
@@ -12,7 +27,7 @@ paragraph.appendChild(tag);
 let reportJokes = []
 
 // Handling the score submissions
-let submission = number => {
+function submission(score_num:number){
     // First we obtain the text content of our jokes paragraph
     let text:string = document.querySelector(".jokes_paragraph").childNodes[0].textContent;
 
@@ -22,13 +37,11 @@ let submission = number => {
     // And now we push this as a paragraph
     reportJokes.push({
         joke: text,
-        score: number,
+        score: score_num,
         date: dateISO
     })
 
     console.log(reportJokes)
-    
-
 }
 
 
@@ -42,6 +55,8 @@ change.onclick = function changer(e) {
   new_tag.appendChild(new_text);
   paragraph.replaceChild(new_tag, item.childNodes[0]);
 
+  fetchURL()
+
   // Changing the background
   let containerStyle = container.style;
   let random:number = Math.floor(Math.random()*3 + 1)
@@ -49,4 +64,6 @@ change.onclick = function changer(e) {
   let random_url:string = `url("${random_name}")`
   console.log(random_url)
   containerStyle.backgroundImage = random_url 
+
+
 };
