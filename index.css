@@ -19,12 +19,11 @@ body {
     margin: 0;
     padding: 0;
     background-image: url("index.svg");
+    background-size: 70%;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
 }
-
-
 
 .weather {
     height: 80px;
@@ -35,5 +34,32 @@ body {
     font-size: 1.05rem;
     align-items: center;
     color: black;
+}
+
+.jokes {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;  
+}
+
+.jokes_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.jokes_change {
+    width: 40%;
+    vertical-align: middle;
+    background-color: yellow;
+    border-radius: 30px;
+    height: 10%;
 }
 
