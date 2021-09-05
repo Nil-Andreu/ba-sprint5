@@ -29,15 +29,19 @@ body {
 .weather {
     height: 80px;
     width: 100px;
-    width: 100%;
-    position: absolute;
     display: flex;
     margin-left: 30px;
     flex-direction: row;
     justify-content: flex-start;
-    font-size: 1.05rem;
     align-items: center;
+
+}
+
+.weather_font {
     color: black;
+    font-weight: bold;
+    font-size: 1.05rem;
+
 }
 
 .jokes {

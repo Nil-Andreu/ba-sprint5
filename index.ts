@@ -14,7 +14,7 @@ async function fetchWeather() {
     })
     let data = await response.json()
     let temperatureF:number = data.main.temp
-    let temperatureC:number = (((temperatureF-32)*5)/9)
+    let temperatureC:number = temperatureF-273
     return Math.round(temperatureC)
 }
 
@@ -24,11 +24,12 @@ tagWeather.appendChild(textWeather);
 weather_container.appendChild(tagWeather);
 
 async function weather() {
-    let temperature = await (await fetchWeather()).toString()
+    let temperature = await (await fetchWeather()).toString() + "°C"
 
     // And now we will replace the text with the actual temperature
     let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
     let new_text: Text = document.createTextNode(temperature);
+    new_tag.classList.add("weather_font")
     new_tag.appendChild(new_text);
 
     // We are replacing the object text

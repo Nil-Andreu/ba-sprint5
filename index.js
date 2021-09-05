@@ -57,7 +57,7 @@ function fetchWeather() {
                 case 2:
                     data = _a.sent();
                     temperatureF = data.main.temp;
-                    temperatureC = (((temperatureF - 32) * 5) / 9);
+                    temperatureC = temperatureF - 273;
                     return [2 /*return*/, Math.round(temperatureC)];
             }
         });
@@ -73,13 +73,12 @@ function weather() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fetchWeather()];
-                case 1: return [4 /*yield*/, (_a.sent()).toString()
-                    // And now we will replace the text with the actual temperature
-                ];
+                case 1: return [4 /*yield*/, (_a.sent()).toString()];
                 case 2:
-                    temperature = _a.sent();
+                    temperature = (_a.sent()) + "°C";
                     new_tag = document.createElement("p");
                     new_text = document.createTextNode(temperature);
+                    new_tag.classList.add("weather_font");
                     new_tag.appendChild(new_text);
                     // We are replacing the object text
                     weather_container.replaceWith(new_tag);
