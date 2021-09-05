@@ -12,14 +12,16 @@ async function fetchURL()  {
         headers: {
             Accept: "application/json"
         }
-    })
-    let joke = await response.json()
+    });
+    const data = await response.json();
+    let joke:string = data.joke
+    console.log(joke)
     return joke
 }
 
 // Here we create the paragraph
 let tag = document.createElement("p"); // Creating the tag element
-let text = document.createTextNode("The text of the joke");
+let text = document.createTextNode("Clica al butó per obtenir acudits!");
 tag.appendChild(text);
 paragraph.appendChild(tag);
 
@@ -47,11 +49,12 @@ function submission(score_num:number){
 
 
 // To handle the onclick of the change button
-change.onclick = function changer(e) {
+change.onclick = async function changer(e) {
+    let new_joke = await fetchURL()
   // Change the text with the one requested
   let item: ChildNode = document.querySelector(".jokes_paragraph")
   let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
-  let new_text: Text = document.createTextNode("Text changed");
+  let new_text: Text = document.createTextNode(new_joke);
   new_tag.appendChild(new_text);
   paragraph.replaceChild(new_tag, item.childNodes[0]);
 

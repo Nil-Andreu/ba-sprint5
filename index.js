@@ -40,7 +40,7 @@ var paragraph = document.querySelector(".jokes_paragraph");
 // Create the async function to request to the url
 function fetchURL() {
     return __awaiter(this, void 0, void 0, function () {
-        var url, response, joke;
+        var url, response, data, joke;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -55,7 +55,9 @@ function fetchURL() {
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    joke = _a.sent();
+                    data = _a.sent();
+                    joke = data.joke;
+                    console.log(joke);
                     return [2 /*return*/, joke];
             }
         });
@@ -63,7 +65,7 @@ function fetchURL() {
 }
 // Here we create the paragraph
 var tag = document.createElement("p"); // Creating the tag element
-var text = document.createTextNode("The text of the joke");
+var text = document.createTextNode("Clica al butó per obtenir acudits!");
 tag.appendChild(text);
 paragraph.appendChild(tag);
 // Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
@@ -84,18 +86,29 @@ function submission(score_num) {
 }
 // To handle the onclick of the change button
 change.onclick = function changer(e) {
-    // Change the text with the one requested
-    var item = document.querySelector(".jokes_paragraph");
-    var new_tag = document.createElement("p"); // Creating the tag element
-    var new_text = document.createTextNode("Text changed");
-    new_tag.appendChild(new_text);
-    paragraph.replaceChild(new_tag, item.childNodes[0]);
-    fetchURL();
-    // Changing the background
-    var containerStyle = container.style;
-    var random = Math.floor(Math.random() * 3 + 1);
-    var random_name = "index" + random + ".svg";
-    var random_url = "url(\"" + random_name + "\")";
-    console.log(random_url);
-    containerStyle.backgroundImage = random_url;
+    return __awaiter(this, void 0, void 0, function () {
+        var new_joke, item, new_tag, new_text, containerStyle, random, random_name, random_url;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetchURL()
+                    // Change the text with the one requested
+                ];
+                case 1:
+                    new_joke = _a.sent();
+                    item = document.querySelector(".jokes_paragraph");
+                    new_tag = document.createElement("p");
+                    new_text = document.createTextNode(new_joke);
+                    new_tag.appendChild(new_text);
+                    paragraph.replaceChild(new_tag, item.childNodes[0]);
+                    fetchURL();
+                    containerStyle = container.style;
+                    random = Math.floor(Math.random() * 3 + 1);
+                    random_name = "index" + random + ".svg";
+                    random_url = "url(\"" + random_name + "\")";
+                    console.log(random_url);
+                    containerStyle.backgroundImage = random_url;
+                    return [2 /*return*/];
+            }
+        });
+    });
 };
