@@ -84,7 +84,7 @@ tag.appendChild(text);
 paragraph.appendChild(tag);
 
 // To handle the onclick of the change button
-change.onclick = async function changer(e) {
+change.onclick = async function changer() {
   let new_joke:string = await fetchJokes();
   // Change the text with the one requested
   let item: ChildNode = document.querySelector(".jokes_paragraph");
@@ -105,7 +105,8 @@ change.onclick = async function changer(e) {
 
 // HANDLING SCORES
 // Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
-let reportJokes = [];
+let reportJokes = []; 
+
 
 // Handling the score submissions
 function submission(score_num: number) {

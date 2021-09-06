@@ -139,7 +139,7 @@ var text = document.createTextNode("Clica al butó per obtenir acudits!");
 tag.appendChild(text);
 paragraph.appendChild(tag);
 // To handle the onclick of the change button
-change.onclick = function changer(e) {
+change.onclick = function changer() {
     return __awaiter(this, void 0, void 0, function () {
         var new_joke, item, new_tag, new_text, containerStyle, random, random_name, random_url;
         return __generator(this, function (_a) {
