@@ -26,6 +26,19 @@ body {
     padding: 0;
 }
 
+.container img {
+    height: 100px;
+    width: auto;
+}
+
+.line {
+    height: 80px;
+    width: 8px;
+    border-radius: 4px;
+    background-color: black;
+    margin-top: 10px;
+}
+
 .weather {
     height: 80px;
     width: 100px;
@@ -34,14 +47,15 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-
+    position: absolute;
 }
 
 .weather_font {
     color: black;
     font-weight: bold;
     font-size: 1.05rem;
-
+    margin-top: 40px;
+    margin-left: 20px;
 }
 
 .jokes {
