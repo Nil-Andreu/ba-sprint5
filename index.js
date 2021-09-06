@@ -63,6 +63,7 @@ function fetchWeather() {
         });
     });
 }
+// Now we will create the element for the temperature in JS
 var tagWeather = document.createElement("p"); // Creating the tag element
 var textWeather = document.createTextNode("La temperatura es...");
 tagWeather.appendChild(textWeather);
@@ -73,14 +74,13 @@ function weather() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fetchWeather()];
-                case 1: return [4 /*yield*/, (_a.sent()).toString()];
-                case 2:
-                    temperature = (_a.sent()) + "°C";
+                case 1:
+                    temperature = ((_a.sent()).toString()) + "°C";
                     new_tag = document.createElement("p");
                     new_text = document.createTextNode(temperature);
-                    new_tag.classList.add("weather_font");
+                    new_tag.classList.add("weather_font"); // To add some styles to the new element
                     new_tag.appendChild(new_text);
-                    // We are replacing the object text
+                    // We are replacing the object text by the one we created before
                     weather_container.replaceWith(new_tag);
                     return [2 /*return*/];
             }
@@ -89,7 +89,7 @@ function weather() {
 }
 // And when the window is loaded, is when we run the function
 window.addEventListener("load", weather);
-// COLLECTING JOKES (NEED TO COLLECT MORE JOKES FROM OTHER APIS)
+// COLLECTING JOKES
 // Create the async function to request to the url
 function fetchJokes() {
     return __awaiter(this, void 0, void 0, function () {
@@ -151,13 +151,12 @@ change.onclick = function changer(e) {
                     new_tag = document.createElement("p");
                     new_text = document.createTextNode(new_joke);
                     new_tag.appendChild(new_text);
-                    // And we replace the child
+                    // And we replace the child by the one created before
                     paragraph.replaceChild(new_tag, item.childNodes[0]);
                     containerStyle = container.style;
                     random = Math.floor(Math.random() * 3 + 1);
                     random_name = "index" + random + ".svg";
                     random_url = "url(\"" + random_name + "\")";
-                    console.log(random_url);
                     containerStyle.backgroundImage = random_url;
                     return [2 /*return*/];
             }

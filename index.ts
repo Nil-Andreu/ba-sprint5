@@ -18,28 +18,29 @@ async function fetchWeather() {
   return Math.round(temperatureC);
 }
 
+// Now we will create the element for the temperature in JS
 let tagWeather = document.createElement("p"); // Creating the tag element
 let textWeather = document.createTextNode("La temperatura es...");
 tagWeather.appendChild(textWeather);
 weather_container.appendChild(tagWeather);
 
 async function weather() {
-  let temperature = (await (await fetchWeather()).toString()) + "°C";
+  let temperature:string = ((await fetchWeather()).toString()) + "°C";
 
   // And now we will replace the text with the actual temperature
   let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
   let new_text: Text = document.createTextNode(temperature);
-  new_tag.classList.add("weather_font");
+  new_tag.classList.add("weather_font"); // To add some styles to the new element
   new_tag.appendChild(new_text);
 
-  // We are replacing the object text
+  // We are replacing the object text by the one we created before
   weather_container.replaceWith(new_tag);
 }
 
 // And when the window is loaded, is when we run the function
 window.addEventListener("load", weather);
 
-// COLLECTING JOKES (NEED TO COLLECT MORE JOKES FROM OTHER APIS)
+// COLLECTING JOKES
 // Create the async function to request to the url
 async function fetchJokes() {
   let random: number = Math.floor(Math.random() * 2 + 1);
@@ -84,14 +85,14 @@ paragraph.appendChild(tag);
 
 // To handle the onclick of the change button
 change.onclick = async function changer(e) {
-  let new_joke = await fetchJokes();
+  let new_joke:string = await fetchJokes();
   // Change the text with the one requested
   let item: ChildNode = document.querySelector(".jokes_paragraph");
   let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
   let new_text: Text = document.createTextNode(new_joke);
   new_tag.appendChild(new_text);
 
-  // And we replace the child
+  // And we replace the child by the one created before
   paragraph.replaceChild(new_tag, item.childNodes[0]);
 
   // Changing the background
@@ -99,7 +100,6 @@ change.onclick = async function changer(e) {
   let random: number = Math.floor(Math.random() * 3 + 1);
   let random_name: string = "index" + random + ".svg";
   let random_url: string = `url("${random_name}")`;
-  console.log(random_url);
   containerStyle.backgroundImage = random_url;
 };
 
