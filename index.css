@@ -15,7 +15,7 @@ body {
     
 
     /*For positioning the form*/
-    background-image: url("index1.svg");
+    background-image: url("img/index1.svg");
     background-size: 70%;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -92,13 +92,13 @@ body {
 }
 
 .bk-1 {
-    background-image: url(bk1.png);
+    background-image: url(img/bk1.png);
 }
 .bk-2 {
-    background-image: url(bk2.png);
+    background-image: url(img/bk2.png);
 }
 .bk-3 {
-    background-image: url(bk3.png);
+    background-image: url(img/bk3.png);
 }
 
 .buttons .jokes_change {

@@ -155,7 +155,7 @@ change.onclick = function changer() {
                     paragraph.replaceChild(new_tag, item.childNodes[0]);
                     containerStyle = container.style;
                     random = Math.floor(Math.random() * 3 + 1);
-                    random_name = "index" + random + ".svg";
+                    random_name = "img/index" + random + ".svg";
                     random_url = "url(\"" + random_name + "\")";
                     containerStyle.backgroundImage = random_url;
                     return [2 /*return*/];

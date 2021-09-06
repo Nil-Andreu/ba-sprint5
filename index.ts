@@ -98,7 +98,7 @@ change.onclick = async function changer() {
   // Changing the background
   let containerStyle = container.style;
   let random: number = Math.floor(Math.random() * 3 + 1);
-  let random_name: string = "index" + random + ".svg";
+  let random_name: string = "img/index" + random + ".svg";
   let random_url: string = `url("${random_name}")`;
   containerStyle.backgroundImage = random_url;
 };
