@@ -78,13 +78,13 @@ body {
 }
 
 .bk-1 {
-    background-image: url(bk3.png);
+    background-image: url(bk1.png);
 }
 .bk-2 {
     background-image: url(bk2.png);
 }
 .bk-3 {
-    background-image: url(bk1.png);
+    background-image: url(bk3.png);
 }
 
 .buttons .jokes_change {
