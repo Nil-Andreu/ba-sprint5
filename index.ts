@@ -25,7 +25,7 @@ tagWeather.appendChild(textWeather);
 weather_container.appendChild(tagWeather);
 
 async function weather() {
-  let temperature:string = ((await fetchWeather()).toString()) + "°C";
+  let temperature: string = (await fetchWeather()).toString() + "°C";
 
   // And now we will replace the text with the actual temperature
   let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
@@ -85,7 +85,7 @@ paragraph.appendChild(tag);
 
 // To handle the onclick of the change button
 change.onclick = async function changer() {
-  let new_joke:string = await fetchJokes();
+  let new_joke: string = await fetchJokes();
   // Change the text with the one requested
   let item: ChildNode = document.querySelector(".jokes_paragraph");
   let new_tag: HTMLParagraphElement = document.createElement("p"); // Creating the tag element
@@ -105,8 +105,7 @@ change.onclick = async function changer() {
 
 // HANDLING SCORES
 // Create the array for the scores (CANNOT BE TYPE OF ANY --> MUST SOLVE)
-let reportJokes = []; 
-
+let reportJokes = [];
 
 // Handling the score submissions
 function submission(score_num: number) {

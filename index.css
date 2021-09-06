@@ -67,6 +67,25 @@ body {
     text-align: center;
 }
 
+.buttons .jokes_score .jokes_button {
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-size:cover;
+
+}
+
+.bk-1 {
+    background-image: url(bk3.png);
+}
+.bk-2 {
+    background-image: url(bk2.png);
+}
+.bk-3 {
+    background-image: url(bk1.png);
+}
 
 .buttons .jokes_change {
     width: 100%;

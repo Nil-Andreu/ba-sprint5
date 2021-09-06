@@ -75,7 +75,7 @@ function weather() {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fetchWeather()];
                 case 1:
-                    temperature = ((_a.sent()).toString()) + "°C";
+                    temperature = (_a.sent()).toString() + "°C";
                     new_tag = document.createElement("p");
                     new_text = document.createTextNode(temperature);
                     new_tag.classList.add("weather_font"); // To add some styles to the new element
