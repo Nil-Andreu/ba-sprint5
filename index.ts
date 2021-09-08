@@ -4,7 +4,7 @@ let paragraph = document.querySelector(".jokes_paragraph");
 let weather_container = document.querySelector(".weather");
 
 // OBTAINING THE WEATHER
-let apiKey: string = "d391122e8b964df10273ed7808eae839";
+let apiKey: string = ""; // Here it will come the api key that you have in OpenWeather
 let urlWeather: string = `https://api.openweathermap.org/data/2.5/weather?q=Spain&appid=${apiKey}`;
 async function fetchWeather() {
   let response = await fetch(urlWeather, {
